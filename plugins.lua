@@ -1,65 +1,66 @@
+-- "custom.configs.overrides" モジュールをインポート
 local overrides = require("custom.configs.overrides")
 
 ---@type NvPluginSpec[]
 local plugins = {
 
-  -- Override plugin definition options
+  -- プラグイン定義オプションを上書き
 
   {
-    "neovim/nvim-lspconfig",
+    "neovim/nvim-lspconfig",  -- LSP (Language Server Protocol) 設定プラグイン
     dependencies = {
-      -- format & linting
+      -- フォーマットとリンティング
       {
         "jose-elias-alvarez/null-ls.nvim",
         config = function()
-          require "custom.configs.null-ls"
+          require "custom.configs.null-ls"  -- カスタムのnull-ls設定を読み込む
         end,
       },
     },
     config = function()
-      require "plugins.configs.lspconfig"
-      require "custom.configs.lspconfig"
-    end, -- Override to setup mason-lspconfig
+      require "plugins.configs.lspconfig"  -- 一般的なLSP設定を読み込む
+      require "custom.configs.lspconfig"  -- カスタムのLSP設定を読み込む
+    end,  -- mason-lspconfigの設定を上書き
   },
 
-  -- override plugin configs
+  -- プラグイン設定を上書き
   {
     "williamboman/mason.nvim",
-    opts = overrides.mason
+    opts = overrides.mason  -- masonプラグインのオプションを上書き
   },
 
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = overrides.treesitter,
+    opts = overrides.treesitter,  -- treesitterプラグインのオプションを上書き
   },
 
   {
     "nvim-tree/nvim-tree.lua",
-    opts = overrides.nvimtree,
+    opts = overrides.nvimtree,  -- nvim-treeプラグインのオプションを上書き
   },
 
-  -- Install a plugin
+  -- プラグインをインストール
   {
     "max397574/better-escape.nvim",
-    event = "InsertEnter",
+    event = "InsertEnter",  -- インサートモードに入ったときにロード
     config = function()
-      require("better_escape").setup()
+      require("better_escape").setup()  -- better-escapeプラグインをセットアップ
     end,
   },
 
-  -- To make a plugin not be loaded
+  -- プラグインをロードしないように設定
   -- {
   --   "NvChad/nvim-colorizer.lua",
   --   enabled = false
   -- },
 
-  -- All NvChad plugins are lazy-loaded by default
-  -- For a plugin to be loaded, you will need to set either `ft`, `cmd`, `keys`, `event`, or set `lazy = false`
-  -- If you want a plugin to load on startup, add `lazy = false` to a plugin spec, for example
+  -- すべてのNvChadプラグインはデフォルトで遅延ロードされる
+  -- プラグインをロードするには、`ft`、`cmd`、`keys`、`event`、または`lazy = false`を設定する必要がある
+  -- スタートアップ時にプラグインをロードする場合は、`lazy = false`をプラグイン仕様に追加
   -- {
   --   "mg979/vim-visual-multi",
   --   lazy = false,
   -- }
 }
 
-return plugins
+return plugins  -- pluginsテーブルを返す

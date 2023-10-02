@@ -1,12 +1,13 @@
 ---@type MappingsTable
-local M = {}
+local M = {}  -- Mという名前のローカルテーブルを作成
 
+-- 一般的なキーマッピング設定
 M.general = {
-  n = {
-    [";"] = { ":", "enter command mode", opts = { nowait = true } },
+  n = {  -- ノーマルモードでのキーマッピング
+    [";"] = { ":", "enter command mode", opts = { nowait = true } },  -- ";" を押すとコマンドモードに入る
   },
-  v = {
-    [">"] = { ">gv", "indent"},
+  v = {  -- ビジュアルモードでのキーマッピング
+    [">"] = { ">gv", "indent"},  -- ">" を押すとインデントを行い、ビジュアル選択を維持する
   },
 }
 
