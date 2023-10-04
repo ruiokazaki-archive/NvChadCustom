@@ -10,7 +10,6 @@ M.treesitter = {
     "javascript",
     "typescript",
     "tsx",
-    "c",
     "markdown",
     "markdown_inline",
   },
@@ -35,10 +34,11 @@ M.mason = {
     "typescript-language-server",
     "deno",
     "prettier",
+    "tailwindcss-language-server",
 
-    -- C/C++ 関連
-    "clangd",
-    "clang-format",
+    -- その他
+    "yaml-language-server",
+    "jsonlint",
   },
 }
 

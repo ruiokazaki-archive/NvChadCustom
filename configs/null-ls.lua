@@ -8,8 +8,8 @@ local b = null_ls.builtins
 local sources = {
 
   -- Web開発関連
-  b.formatting.deno_fmt,  -- ts/js ファイル用に deno を選択（高速なため）
-  b.formatting.prettier.with { filetypes = { "html", "markdown", "css" } },  -- prettier はこれらのファイルタイプでのみ動作
+  b.formatting.prettier,
+  b.code_actions.eslint,
 
   -- Lua
   b.formatting.stylua,  -- Lua のフォーマッターとして stylua を使用

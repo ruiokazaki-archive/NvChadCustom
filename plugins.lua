@@ -1,50 +1,60 @@
 -- "custom.configs.overrides" モジュールをインポート
-local overrides = require("custom.configs.overrides")
+local overrides = require "custom.configs.overrides"
 
 ---@type NvPluginSpec[]
 local plugins = {
 
   -- プラグイン定義オプションを上書き
-
   {
-    "neovim/nvim-lspconfig",  -- LSP (Language Server Protocol) 設定プラグイン
+    "neovim/nvim-lspconfig", -- LSP (Language Server Protocol) 設定プラグイン
     dependencies = {
       -- フォーマットとリンティング
       {
         "jose-elias-alvarez/null-ls.nvim",
         config = function()
-          require "custom.configs.null-ls"  -- カスタムのnull-ls設定を読み込む
+          require "custom.configs.null-ls" -- カスタムのnull-ls設定を読み込む
         end,
       },
     },
     config = function()
-      require "plugins.configs.lspconfig"  -- 一般的なLSP設定を読み込む
-      require "custom.configs.lspconfig"  -- カスタムのLSP設定を読み込む
-    end,  -- mason-lspconfigの設定を上書き
+      require "plugins.configs.lspconfig" -- 一般的なLSP設定を読み込む
+      require "custom.configs.lspconfig" -- カスタムのLSP設定を読み込む
+    end, -- mason-lspconfigの設定を上書き
   },
 
   -- プラグイン設定を上書き
   {
     "williamboman/mason.nvim",
-    opts = overrides.mason  -- masonプラグインのオプションを上書き
+    opts = overrides.mason, -- masonプラグインのオプションを上書き
   },
 
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = overrides.treesitter,  -- treesitterプラグインのオプションを上書き
+    opts = overrides.treesitter, -- treesitterプラグインのオプションを上書き
   },
 
   {
     "nvim-tree/nvim-tree.lua",
-    opts = overrides.nvimtree,  -- nvim-treeプラグインのオプションを上書き
+    opts = overrides.nvimtree, -- nvim-treeプラグインのオプションを上書き
   },
 
   -- プラグインをインストール
   {
     "max397574/better-escape.nvim",
-    event = "InsertEnter",  -- インサートモードに入ったときにロード
+    event = "InsertEnter", -- インサートモードに入ったときにロード
     config = function()
-      require("better_escape").setup()  -- better-escapeプラグインをセットアップ
+      require("better_escape").setup() -- better-escapeプラグインをセットアップ
+    end,
+  },
+
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup {
+        -- Configuration here, or leave empty to use defaults
+      }
     end,
   },
 
@@ -63,4 +73,4 @@ local plugins = {
   -- }
 }
 
-return plugins  -- pluginsテーブルを返す
+return plugins -- pluginsテーブルを返す

@@ -6,13 +6,13 @@ local capabilities = require("plugins.configs.lspconfig").capabilities
 local lspconfig = require "lspconfig"
 
 -- デフォルトの設定を使用するLSPサーバーをテーブルに格納
-local servers = { "html", "cssls", "tsserver", "clangd" }
+local servers = { "html", "cssls", "tsserver", "clangd", "svelte-language-server" }
 
 -- 各LSPサーバーに対して設定を適用
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
-    on_attach = on_attach,  -- サーバーがアタッチしたときの動作
-    capabilities = capabilities,  -- サーバーの機能
+    on_attach = on_attach, -- サーバーがアタッチしたときの動作
+    capabilities = capabilities, -- サーバーの機能
   }
 end
 
