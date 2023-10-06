@@ -8,15 +8,27 @@ local b = null_ls.builtins
 local sources = {
 
   -- Web開発関連
-  b.formatting.prettier,
   b.code_actions.eslint,
+  b.formatting.prettierd.with {
+    filetypes = {
+      "html",
+      "json",
+      "svelte",
+      "markdown",
+      "css",
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact",
+    },
+  },
 
   -- Lua
-  b.formatting.stylua,  -- Lua のフォーマッターとして stylua を使用
+  b.formatting.stylua, -- Lua のフォーマッターとして stylua を使用
 }
 
 -- null-ls の設定
 null_ls.setup {
-  debug = true,  -- デバッグモードを有効にする
-  sources = sources,  -- 上で定義したソースを使用
+  debug = true, -- デバッグモードを有効にする
+  sources = sources, -- 上で定義したソースを使用
 }
